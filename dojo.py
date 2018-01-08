@@ -1,20 +1,27 @@
 #!/usr/bin/python
 import sys
 import argparse
+import unittest
+
+from commands.katas_list import get_katas_list
+from commands.new_kata import build_boilerplate
 
 
 def handle_list_command():
-    print('list called')
-    pass
+    sys.stdout.write('List of available Katas: \n')
+    katas = get_katas_list()
+    for kata in katas:
+        sys.stdout.write(kata)
 
 
 def handle_new_command(name):
-    print('new called with {}'.format(name))
-    pass
+    build_boilerplate(name)
+    sys.stdout.write(
+        'Initial code for {} has been generated.\nPrease, check src directory.\n'.format(name))
 
 
 def handle_test_command():
-    pass
+    unittest.main('src.tests', exit=True)
 
 command_handlers = {
     'list': handle_list_command,
@@ -33,7 +40,7 @@ if __name__ == '__main__':
     ns = parser.parse_args(sys.argv[1:])
     handler = command_handlers.get(ns.command_name)
     if handler:
-        command_args = {k: getattr(ns, k) for k in dir(ns) if not k.startswith('_') and k!='command_name'}
+        command_args = {k: getattr(ns, k) for k in dir(ns) if not k.startswith('_') and k != 'command_name'}
         handler(**command_args)
     else:
         parser.print_usage()
