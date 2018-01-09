@@ -12,4 +12,4 @@ Repository contains challenges for [coding-dojo](http://codingdojo.org/WhatIsCod
 Example: `python dojo.py new game-of-life`
 
 ---
-`python dojo.py test` will run all your unittests for solutions
+`python dojo.py test` will run all your unittests for a solution
