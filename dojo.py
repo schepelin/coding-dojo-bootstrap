@@ -11,7 +11,7 @@ def handle_list_command():
     sys.stdout.write('List of available Katas: \n')
     katas = get_katas_list()
     for kata in katas:
-        sys.stdout.write(kata)
+        sys.stdout.write('{}\n'.format(kata))
 
 
 def handle_new_command(name):
@@ -22,6 +22,7 @@ def handle_new_command(name):
 
 def handle_test_command():
     unittest.main('src.tests', exit=True)
+
 
 command_handlers = {
     'list': handle_list_command,
